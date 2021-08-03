@@ -1,15 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import deleteContact from "../../redux/contact/contactActions";
+import { deleteContact } from "../../redux/contact/contactActions";
 
-const ContactList = ({ contacts, removeContact }) => {
+const ContactList = ({ contacts, deleteContact }) => {
   return (
     <ul>
-      <h2>good</h2>
       {contacts.map(({ id, name, number }) => (
         <li key={id}>
-          <p>{name}</p>
-          <p>{number}</p>
+          <span>{name}</span> : <span>{number}</span>
+          <button onClick={() => deleteContact(id)}>Delete</button>
         </li>
       ))}
     </ul>
@@ -19,4 +18,4 @@ const ContactList = ({ contacts, removeContact }) => {
 const mstp = (state) => {
   return { contacts: state.contacts };
 };
-export default connect(mstp)(ContactList);
+export default connect(mstp, { deleteContact })(ContactList);

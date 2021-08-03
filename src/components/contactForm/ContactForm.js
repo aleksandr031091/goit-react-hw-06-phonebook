@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { addContact } from "../../redux/contact/contactActions";
 import { v4 as uuidv4 } from "uuid";
 
-const initialState = { name: "", number: "", id: uuidv4() };
+const initialState = { name: "", number: "" };
 
 class ContactForm extends Component {
   state = { ...initialState };
@@ -15,7 +15,7 @@ class ContactForm extends Component {
 
   onHandleSubmit = (e) => {
     e.preventDefault();
-    this.props.addContact(this.state);
+    this.props.addContact({ ...this.state, id: uuidv4() });
     this.setState({ ...initialState });
   };
 
