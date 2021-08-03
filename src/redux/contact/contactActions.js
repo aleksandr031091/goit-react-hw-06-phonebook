@@ -1,14 +1,9 @@
-const GET_CONTACTS = "getContacts";
-const ADD_CONTACT = "addContact";
-const DELETE_CONTACT = "deleteContact";
-const FILTER_CONTACTS = "filterContacts";
+// const GET_CONTACTS = "contact/getContacts";
+const ADD_CONTACT = "contact/addContact";
+const DELETE_CONTACT = "contact/deleteContact";
+const FILTER_CONTACTS = "contact/filterContacts";
 
-export { GET_CONTACTS, ADD_CONTACT, DELETE_CONTACT, FILTER_CONTACTS };
-
-const getContacts = (contact) => ({
-  type: GET_CONTACTS,
-  payload: contact,
-});
+export { ADD_CONTACT, DELETE_CONTACT, FILTER_CONTACTS };
 
 const addContact = (contact) => ({
   type: ADD_CONTACT,
@@ -24,3 +19,5 @@ const filterContacts = (id) => ({
   type: FILTER_CONTACTS,
   payload: id,
 });
+
+export { addContact, deleteContact, filterContacts };

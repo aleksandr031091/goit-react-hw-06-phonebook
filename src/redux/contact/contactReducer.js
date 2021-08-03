@@ -1,31 +1,27 @@
 import { combineReducers } from "redux";
 import {
-  GET_CONTACTS,
   ADD_CONTACT,
   DELETE_CONTACT,
   FILTER_CONTACTS,
 } from "../contact/contactActions";
 
-const contactItemReducer = (state = { items: [] }, { type, payload }) => {
+const contactItemReducer = (state = [], { type, payload }) => {
   switch (type) {
-    case GET_CONTACTS:
-      return [];
-
     case ADD_CONTACT:
-      return [];
+      return [...state, payload];
 
     case DELETE_CONTACT:
-      return [];
+      return state.map((contact) => contact.id !== payload);
 
     default:
       return state;
   }
 };
 
-const filterReducer = (state = [], { type, payload }) => {
+const filterReducer = (state = "", { type, payload }) => {
   switch (type) {
     case FILTER_CONTACTS:
-      return [];
+      return payload;
 
     default:
       return state;
