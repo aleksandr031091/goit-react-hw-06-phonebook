@@ -1,17 +1,25 @@
 // const GET_CONTACTS = "contact/getContacts";
-const ADD_CONTACT = "contact/addContact";
-const DELETE_CONTACT = "contact/deleteContact";
+const ADD_CONTACTS = "contact/addContacts";
+const DELETE_CONTACTS = "contact/deleteContacts";
 const FILTER_CONTACTS = "contact/filterContacts";
+const ALERT_CONTACTS = "contact/errorContacts";
+const RESET_ALERT = "contact/resetError";
 
-export { ADD_CONTACT, DELETE_CONTACT, FILTER_CONTACTS };
+export {
+  ADD_CONTACTS,
+  DELETE_CONTACTS,
+  FILTER_CONTACTS,
+  ALERT_CONTACTS,
+  RESET_ALERT,
+};
 
-const addContact = (contact) => ({
-  type: ADD_CONTACT,
+const addContacts = (contact) => ({
+  type: ADD_CONTACTS,
   payload: contact,
 });
 
-const deleteContact = (id) => ({
-  type: DELETE_CONTACT,
+const deleteContacts = (id) => ({
+  type: DELETE_CONTACTS,
   payload: id,
 });
 
@@ -20,4 +28,19 @@ const filterContacts = (id) => ({
   payload: id,
 });
 
-export { addContact, deleteContact, filterContacts };
+const alertContacts = (message) => ({
+  type: ALERT_CONTACTS,
+  payload: message,
+});
+
+const resetAlert = () => ({
+  type: RESET_ALERT,
+});
+
+export {
+  addContacts,
+  deleteContacts,
+  filterContacts,
+  alertContacts,
+  resetAlert,
+};

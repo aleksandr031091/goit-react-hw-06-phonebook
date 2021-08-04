@@ -26,3 +26,7 @@
 :focus {
   border: 1px solid blue;
 }
+.alert {
+  font-weight: 700;
+  color: tomato;
+}

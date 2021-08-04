@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addContact } from "../../redux/contact/contactActions";
+import {
+  addContacts,
+  alertContacts,
+  resetAlert,
+} from "../../redux/contact/contactActions";
 import { v4 as uuidv4 } from "uuid";
 import css from "./ContactForm.module.css";
 
@@ -11,23 +15,37 @@ class ContactForm extends Component {
 
   onHandleChange = (e) => {
     const { name, value } = e.target;
+
+    if (this.props.error) {
+      this.props.resetAlert();
+    }
     this.setState({ [name]: value });
   };
 
   onHandleSubmit = (e) => {
     e.preventDefault();
-    this.props.addContact({
-      name: this.state.name,
-      number: this.state.number,
-      id: uuidv4(),
-    });
-    this.setState({ ...initialState });
+    if (
+      this.props.contacts.some(({ name, number }) =>
+        [name, number].some(
+          (item) => item === this.state.name || item === this.state.number
+        )
+      )
+    ) {
+      this.props.alertContacts("This contact is already in contacts");
+    } else {
+      this.props.addContacts({
+        ...this.state,
+        id: uuidv4(),
+      });
+      this.setState({ ...initialState });
+    }
   };
 
   render() {
     const { name, number } = this.state;
     return (
       <>
+        <p className={css.alert}>{this.props.error}</p>
         <form className={css.form} onSubmit={this.onHandleSubmit}>
           <label className={css.label}>
             Name
@@ -64,4 +82,11 @@ class ContactForm extends Component {
   }
 }
 
-export default connect(null, { addContact })(ContactForm);
+const mstp = (state) => ({
+  contacts: state.contacts,
+  error: state.error,
+});
+
+export default connect(mstp, { addContacts, alertContacts, resetAlert })(
+  ContactForm
+);
