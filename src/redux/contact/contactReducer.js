@@ -1,47 +1,27 @@
-import { combineReducers } from "redux";
+import { createReducer, combineReducers } from "@reduxjs/toolkit";
+
 import {
-  ADD_CONTACTS,
-  DELETE_CONTACTS,
-  FILTER_CONTACTS,
-  ALERT_CONTACTS,
-  RESET_ALERT,
+  addContacts,
+  alertContacts,
+  deleteContacts,
+  filterContacts,
+  resetAlert,
 } from "../contact/contactActions";
 
-const contactItemReducer = (state = [], { type, payload }) => {
-  switch (type) {
-    case ADD_CONTACTS:
-      return [...state, payload];
+const contactItemReducer = createReducer([], {
+  [addContacts]: (state, { payload }) => [...state, payload],
+  [deleteContacts]: (state, { payload }) =>
+    state.filter((contact) => contact.id !== payload),
+});
 
-    case DELETE_CONTACTS:
-      return state.filter((contact) => contact.id !== payload);
+const filterReducer = createReducer("", {
+  [filterContacts]: (_, { payload }) => payload,
+});
 
-    default:
-      return state;
-  }
-};
-
-const filterReducer = (state = "", { type, payload }) => {
-  switch (type) {
-    case FILTER_CONTACTS:
-      return payload;
-
-    default:
-      return state;
-  }
-};
-
-const contactErrorReducer = (state = "", { type, payload }) => {
-  switch (type) {
-    case ALERT_CONTACTS:
-      return payload;
-
-    case RESET_ALERT:
-      return "";
-
-    default:
-      return state;
-  }
-};
+const contactErrorReducer = createReducer("", {
+  [alertContacts]: (_, { payload }) => payload,
+  [resetAlert]: () => "",
+});
 
 const contactReduser = combineReducers({
   contacts: contactItemReducer,

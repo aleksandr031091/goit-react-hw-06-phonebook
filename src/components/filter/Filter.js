@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { filterContacts } from "../../redux/contact/contactActions";
 import css from "./Filter.module.css";
 
@@ -30,3 +31,8 @@ const mstp = (state) => {
 };
 
 export default connect(mstp, { setNewFilterContacts: filterContacts })(Filter);
+
+Filter.propTypes = {
+  value: PropTypes.string,
+  setNewFilterContacts: PropTypes.func.isRequired,
+};

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { deleteContacts } from "../../redux/contact/contactActions";
 import css from "./ContactList.module.css";
 
@@ -29,3 +30,14 @@ const mstp = (state) => {
 };
 
 export default connect(mstp, { deleteContacts })(ContactList);
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    })
+  ),
+  deleteContacts: PropTypes.func.isRequired,
+};

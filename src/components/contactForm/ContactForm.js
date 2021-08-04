@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import {
   addContacts,
   alertContacts,
@@ -90,3 +91,9 @@ const mstp = (state) => ({
 export default connect(mstp, { addContacts, alertContacts, resetAlert })(
   ContactForm
 );
+
+ContactForm.propTypes = {
+  addContacts: PropTypes.func.isRequired,
+  alertContacts: PropTypes.func.isRequired,
+  resetAlert: PropTypes.func.isRequired,
+};
