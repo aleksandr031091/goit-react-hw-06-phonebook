@@ -15,7 +15,11 @@ class ContactForm extends Component {
 
   onHandleSubmit = (e) => {
     e.preventDefault();
-    this.props.addContact({ ...this.state, id: uuidv4() });
+    this.props.addContact({
+      name: this.state.name,
+      number: this.state.number,
+      id: uuidv4(),
+    });
     this.setState({ ...initialState });
   };
 

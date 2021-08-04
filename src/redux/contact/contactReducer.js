@@ -11,7 +11,7 @@ const contactItemReducer = (state = [], { type, payload }) => {
       return [...state, payload];
 
     case DELETE_CONTACT:
-      return state.map((contact) => contact.id !== payload);
+      return state.filter((contact) => contact.id !== payload);
 
     default:
       return state;

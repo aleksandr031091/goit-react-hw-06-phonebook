@@ -16,6 +16,13 @@ const ContactList = ({ contacts, deleteContact }) => {
 };
 
 const mstp = (state) => {
-  return { contacts: state.contacts };
+  return {
+    contacts: state.contacts.filter(({ name, number }) =>
+      Object.values({ name, number }).some((contact) =>
+        contact.toUpperCase().includes(state.filter.toUpperCase())
+      )
+    ),
+  };
 };
+
 export default connect(mstp, { deleteContact })(ContactList);
