@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { filterContacts } from "../../redux/contact/contactActions";
+import css from "./Filter.module.css";
 
 const Filter = ({ value, setNewFilterContacts }) => {
   const onHandleChange = (e) => {
@@ -9,9 +10,14 @@ const Filter = ({ value, setNewFilterContacts }) => {
 
   return (
     <>
-      <label>
+      <label className={css.label}>
         Find contacts by name
-        <input type="text" value={value} onChange={onHandleChange} />
+        <input
+          className={css.input}
+          type="text"
+          value={value}
+          onChange={onHandleChange}
+        />
       </label>
     </>
   );
