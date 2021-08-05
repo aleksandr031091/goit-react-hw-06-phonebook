@@ -26,7 +26,7 @@ const Filter = ({ value, setNewFilterContacts }) => {
 
 const mstp = (state) => {
   return {
-    value: state.Filter,
+    value: state.filter,
   };
 };
 
