@@ -28,7 +28,9 @@ class ContactForm extends Component {
     if (
       this.props.contacts.some(({ name, number }) =>
         [name, number].some(
-          (item) => item === this.state.name || item === this.state.number
+          (item) =>
+            item.toUpperCase() === this.state.name.toUpperCase() ||
+            item.toUpperCase() === this.state.number.toUpperCase()
         )
       )
     ) {

@@ -33,6 +33,6 @@ const mstp = (state) => {
 export default connect(mstp, { setNewFilterContacts: filterContacts })(Filter);
 
 Filter.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
   setNewFilterContacts: PropTypes.func.isRequired,
 };
